@@ -1,0 +1,38 @@
+{{>layouts/header}}
+<div class="container">
+    <h5>Todo 생성</h5>
+
+    <form action="/todos" method="post">
+        <div class="input-field">
+            <input type="text" id="name" name="name" required>
+            <label for="name">할 일</label>
+        </div>
+
+        <div class="input-field">
+            <select name="state">
+                <option value="TODO" selected>TODO</option>
+                <option value="DOING">DOING</option>
+                <option value="DOING_ASAP">DOING(ASAP)</option>
+                <option value="DONE">DONE</option>
+            </select>
+            <label>상태</label>
+        </div>
+
+        <div class="input-field">
+            <input type="datetime-local" name="deadLine">
+            <label class="active">마감일</label>
+        </div>
+
+        <button class="btn waves-effect waves-light" type="submit">
+            생성
+        </button>
+    </form>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('select');
+        M.FormSelect.init(elems);
+    });
+</script>
+{{>layouts/footer}}
