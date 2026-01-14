@@ -46,8 +46,8 @@ jobs:
             docker rmi ${{ secrets.DOCKER_USERNAME }}/git-prac:latest || true
             docker pull ${{ secrets.DOCKER_USERNAME }}/git-prac:latest
             docker run -d -p 80:8080 \
-            -e URL=jdbc:mysql://${{ secrets.RDS_URL }}/test \
+            -e URL=jdbc:mysql://${{ secrets.RDS_URL }}/todo_db \
             -e USERNAME=${{ secrets.RDS_USERNAME }} \
             -e PASSWORD=${{ secrets.RDS_PASSWORD }} \
-            --name test \
+            --name git_prac \
             ${{ secrets.DOCKER_USERNAME}}/test:latest
