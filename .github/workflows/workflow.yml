@@ -50,4 +50,4 @@ jobs:
             -e USERNAME=${{ secrets.RDS_USERNAME }} \
             -e PASSWORD=${{ secrets.RDS_PASSWORD }} \
             --name git_prac \
-            ${{ secrets.DOCKER_USERNAME}}/git-prac:lagit-prac
+            ${{ secrets.DOCKER_USERNAME}}/git-prac:latest
