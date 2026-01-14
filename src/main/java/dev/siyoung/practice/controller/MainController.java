@@ -26,7 +26,7 @@ public class MainController {
     public String create () {
         return "create";
     }
-
+    // 생성
     @PostMapping("/todos")
     public String createTodo (@RequestParam String name, @RequestParam String state, @RequestParam String deadLine) {
         Todo todo = new Todo(null, name, state, LocalDateTime.parse(deadLine));
