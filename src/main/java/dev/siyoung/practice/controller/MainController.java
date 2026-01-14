@@ -39,7 +39,7 @@ public class MainController {
         todoService.updateState(id, state);
         return "redirect:/";
     }
-
+    // 삭제
     @PostMapping("/todos/delete")
     public String deleteTodo (@RequestParam Long id) {
         todoService.delete(id);
