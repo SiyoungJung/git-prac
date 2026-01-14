@@ -1,0 +1,76 @@
+{{>layouts/header}}
+
+<div class="container">
+    <h5>Todo 목록</h5>
+
+    <table class="striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>할 일</th>
+            <th>상태</th>
+            <th>마감일</th>
+            <th>관리</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#todos}}
+            <tr>
+                <td>{{id}}</td>
+                <td>{{name}}</td>
+                <td>{{state}}</td>
+                <td>{{deadLine}}</td>
+                <td>
+                    <a class="btn modal-trigger blue"
+                       href="#editModal"
+                       onclick="setEditData('{{id}}','{{state}}')">
+                        수정
+                    </a>
+
+                    <form action="/todos/delete" method="post" style="display:inline">
+                        <input type="hidden" name="id" value="{{id}}">
+                        <button class="btn red">삭제</button>
+                    </form>
+                </td>
+            </tr>
+        {{/todos}}
+        </tbody>
+    </table>
+</div>
+
+<div id="editModal" class="modal">
+    <div class="modal-content">
+        <h5>Todo 상태 수정</h5>
+
+        <form action="/todos/state" method="post">
+            <input type="hidden" id="edit-id" name="id">
+
+            <div class="input-field">
+                <select name="state" id="edit-state">
+                    <option value="TODO">TODO</option>
+                    <option value="DOING">DOING</option>
+                    <option value="DOING_ASAP">DOING(ASAP)</option>
+                    <option value="DONE">DONE</option>
+                </select>
+                <label>상태</label>
+            </div>
+
+            <button class="btn blue" type="submit">수정</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        M.Modal.init(document.querySelectorAll('.modal'));
+        M.FormSelect.init(document.querySelectorAll('select'));
+    });
+
+    function setEditData(id, state) {
+        document.getElementById('edit-id').value = id;
+        document.getElementById('edit-state').value = state;
+        M.FormSelect.init(document.querySelectorAll('select'));
+    }
+</script>
+
+{{>layouts/footer}}
