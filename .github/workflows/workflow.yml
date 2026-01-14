@@ -45,7 +45,7 @@ jobs:
             docker stop git-prac || true
             docker rm git-prac || true
             docker pull ${{ secrets.DOCKER_USERNAME }}/git-prac:latest
-            docker run -d -p 443:8080 \
+            docker run -d -p 80:8080 \
               -e URL=jdbc:mysql://${{ secrets.RDS_URL }}/todo_db \
               -e USERNAME=${{ secrets.RDS_USERNAME }} \
               -e PASSWORD=${{ secrets.RDS_PASSWORD }} \
