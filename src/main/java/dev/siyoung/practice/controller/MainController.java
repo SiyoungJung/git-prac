@@ -33,7 +33,7 @@ public class MainController {
         todoService.create(todo);
         return "redirect:/";
     }
-
+    // 수정
     @PostMapping("/todos/state")
     public String updateState (@RequestParam Long id, @RequestParam String state) {
         todoService.updateState(id, state);
