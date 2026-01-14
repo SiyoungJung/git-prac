@@ -21,7 +21,7 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: step4
-        run: ./gradlew bootJar -x test
+        run: ./gradlew bootJar -x git-prac
 
       - name: step5
         uses: docker/login-action@v2
@@ -41,8 +41,8 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
           script: |
-            docker stop test || true
-            docker rm test || true
+            docker stop git-prac || true
+            docker rm git-prac || true
             docker rmi ${{ secrets.DOCKER_USERNAME }}/git-prac:latest || true
             docker pull ${{ secrets.DOCKER_USERNAME }}/git-prac:latest
             docker run -d -p 80:8080 \
@@ -50,4 +50,4 @@ jobs:
             -e USERNAME=${{ secrets.RDS_USERNAME }} \
             -e PASSWORD=${{ secrets.RDS_PASSWORD }} \
             --name git_prac \
-            ${{ secrets.DOCKER_USERNAME}}/test:latest
+            ${{ secrets.DOCKER_USERNAME}}/git-prac:lagit-prac
