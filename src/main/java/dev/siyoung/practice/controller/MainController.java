@@ -15,31 +15,26 @@ import java.time.LocalDateTime;
 @Controller
 public class MainController {
     private final TodoService todoService;
-
     @GetMapping("/")
     public String index (Model model) {
         model.addAttribute("todos", todoService.findAll());
         return "index";
     }
-
     @GetMapping("/create")
     public String create () {
         return "create";
     }
-    // 생성
     @PostMapping("/todos")
     public String createTodo (@RequestParam String name, @RequestParam String state, @RequestParam String deadLine) {
         Todo todo = new Todo(null, name, state, LocalDateTime.parse(deadLine));
         todoService.create(todo);
         return "redirect:/";
     }
-    // 수정
     @PostMapping("/todos/state")
     public String updateState (@RequestParam Long id, @RequestParam String state) {
         todoService.updateState(id, state);
         return "redirect:/";
     }
-    // 삭제
     @PostMapping("/todos/delete")
     public String deleteTodo (@RequestParam Long id) {
         todoService.delete(id);
